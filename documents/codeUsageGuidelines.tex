@@ -1,0 +1,414 @@
+\documentclass[12pt]{scrartcl}
+
+
+\usepackage{epsfig,amssymb}
+
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{epstopdf}
+\usepackage{multirow}
+
+\definecolor{darkred}{rgb}{0.5,0,0}
+\definecolor{darkgreen}{rgb}{0,0.5,0}
+\usepackage{hyperref}
+\hypersetup{
+  letterpaper,
+  colorlinks,
+  linkcolor=red,
+  citecolor=darkgreen,
+  menucolor=darkred,
+  urlcolor=blue,
+  pdfpagemode=none,
+  pdftitle={Code Usage Guidelines},
+  pdfkeywords={}
+}
+
+\usepackage{fullpage}
+\usepackage{tikz}
+\pagestyle{empty} %
+\usepackage{subfigure}
+
+\definecolor{MyDarkBlue}{rgb}{0,0.08,0.45}
+\definecolor{MyDarkRed}{rgb}{0.45,0.08,0}
+\definecolor{MyDarkGreen}{rgb}{0.08,0.45,0.08}
+
+\definecolor{mintedBackground}{rgb}{0.95,0.95,0.95}
+\definecolor{mintedInlineBackground}{rgb}{.90,.90,1}
+
+\usepackage[newfloat=true]{minted}
+
+\setminted{mathescape,
+           linenos,
+           autogobble,
+           frame=none,
+           framesep=2mm,
+           framerule=0.4pt,
+           %label=foo,
+           xleftmargin=2em,
+           xrightmargin=0em,
+           %startinline=true,  %PHP only, allow it to omit the PHP Tags *** with this option, variables using dollar sign in comments are treated as latex math
+           numbersep=10pt, %gap between line numbers and start of line
+           style=default} %syntax highlighting style, default is "default"
+
+\setmintedinline{bgcolor={mintedBackground}}
+%doesn't work with the above workaround:
+\setminted{bgcolor={mintedBackground}}
+\setminted[text]{bgcolor={mintedBackground},linenos=false,autogobble,xleftmargin=1em}
+%\setminted[php]{bgcolor=mintedBackgroundPHP} %startinline=True}
+\SetupFloatingEnvironment{listing}{name=Code Sample}
+\SetupFloatingEnvironment{listing}{listname=List of Code Samples}
+
+\setlength{\parindent}{0pt} %
+\setlength{\parskip}{.25cm}
+\newcommand{\comment}[1]{}
+
+\usepackage{amsmath}
+\usepackage{algorithm2e}
+\SetKwInOut{Input}{input}
+\SetKwInOut{Output}{output}
+%NOTE: you can embed algorithms in solutions, but they cannot be floating objects; use [H] to make them non-floats
+
+\usepackage{lastpage}
+
+%\usepackage{titling}
+\usepackage{fancyhdr}
+\renewcommand*{\titlepagestyle}{fancy}
+\pagestyle{fancy}
+%\renewcommand*{\titlepagestyle}{fancy}
+%\fancyhf{}
+%\rhead{Computer Science I}
+%\lhead{Guides and tutorials}
+\renewcommand{\headrulewidth}{0.0pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\lhead{~}
+\chead{~}
+\rhead{~}
+\lfoot{\Title}
+\cfoot{~}
+\rfoot{\thepage\ / \pageref*{LastPage}}
+
+\makeatletter
+\title{Academic Integrity \& Code Usage Guidelines}\let\Title\@title
+\subtitle{Computer Science I\\
+{\small
+\vskip.5cm
+Department of Computer Science \& Engineering \\
+University of Nebraska--Lincoln}
+\vskip-1cm}
+%\author{Dr.\ Chris Bourke}
+\date{~}
+\makeatother
+
+\begin{document}
+
+\maketitle
+\vskip-1.5cm
+\hrule
+
+\section*{Acceptable Collaboration in CSCE 155E}
+
+\emph{Never} assume that every class or instructor has the same academic 
+integrity policies or expectations.  You are expected to understand and 
+follow the individual policies of an instructor for every CSCE (and non-CSCE)
+course!
+
+All policies follow from the general guideline:  \emph{Any material, technique, 
+or resources that makes learning easier is fine.  Any material, technique, 
+or resources that makes learning unnecessary is \textbf{not} fine.}
+
+\begin{center}
+\begin{tabular}{|l|l|p{8cm}|}
+\hline
+Labs & Required Collaboration & You are randomly assigned a partner and required to collaborate with them for that lab.  You \emph{may} get help from other groups and
+you \emph{should} help other groups but you should primarily work with your assigned partner. \\
+\hline
+Hacks & Open Collaboration & You \emph{may} work with another student 
+of your choice in pairs but no larger groups are allowed.\\
+\hline
+%Assignments & Closed Collaboration & You \emph{may not} work directly with any other student or individual (other than instructors); all work must be your own.  You may only collaborate with other students \emph{at a high level}.  \\
+%\hline
+Exams & Closed Collaboration & You \emph{may not} work with any other student or individual in any way.  You may not communicate with anyone during the exam.\\
+\hline
+\end{tabular}
+\end{center}
+
+\section*{Acceptable Code Usage}
+
+The following instances are examples of code usage that are acceptable.
+Any of the following pieces of code may be used in your labs, hacks, assignments
+and exams.
+
+\begin{itemize}
+  \item Any function provided as part of a language's standard library
+  \item Any piece of code that was provided to you by the instructor
+  \item Any piece of code that you wrote as part of a lab, hack session or from another assignment
+  \item Any piece of code \emph{you} wrote outside of class or for another class
+\end{itemize}
+
+\section*{Unacceptable Code Usage}
+
+The following instances are examples of code usage that are \emph{not}
+acceptable.  These instances will be be considered a violation of academic 
+integrity for this course.
+
+\begin{itemize}
+  \item Any piece of code copied from another student in any form.  This
+  includes cut-and-paste of any substantial part, copying entire files, 
+  transcribing or reproducing code you saw or copying code and then attempting
+  to obfuscate it to hide the copying.
+  \item Providing code to another student or allowing another student to copy your code or not taking reasonable measures to prevent another student from gaining access to your code
+  \item Making your code publicly accessible prior to final grades posting
+  \item Accessing sites such as:
+  \begin{itemize}
+    \item \url{http://www.chegg.com}
+    \item \url{http://coursehero.com}
+    \item \url{https://www.freelancer.com/} 
+  \end{itemize}
+  or anything similar will result in immediate failure of this course.  These
+  are sites whose only purpose is to facilitate cheating and have no other 
+  legitimate use as far as this course goes.
+\end{itemize}
+
+\section*{Don't Be Stupid}
+
+It is \textbf{stupid to cheat} because:
+\begin{itemize}
+  \item You're not learning anything, you're wasting your money and your time 
+  \item Your ignorance will eventually be exposed, either in your exams, future courses, or career; fail fast or fail slow.
+\end{itemize}
+
+It is stupid to \textbf{ask for or receive code from someone else} because
+\begin{itemize}
+  \item If you use it to any significant degree, it will be easily detected using MOSS.
+  \item You undermine your own learning experience
+  \item If they were willing to share it with you, they likely shared it with others, increasing nearly guaranteeing the likelihood that you will all get caught.
+\end{itemize}
+
+It is stupid to \textbf{give your code to someone else} because
+\begin{itemize}
+  \item They will likely end up screwing you by using it either in part or in whole which will easily be caught using MOSS.  You will suffer the consequences along with them.  You risk everything and gain nothing.
+  \item They may share it with any number of other students, almost guaranteeing that you will all get caught.
+\end{itemize}
+
+It is stupid to \textbf{copy code off the internet} because
+\begin{itemize}
+  \item Your instructor can use Google too, you know.  We can just as easily find the source of your plagiarism and in fact can do it easier because we have your copy!
+  \item Several other idiots may have the exact same bright idea!  Multiple students copying from the same source is going to be at the top of our red flag list when we run MOSS.
+\end{itemize}
+
+\section*{Proper Collaboration}
+
+Though you are allowed to collaborate on labs and hacks, it is important to 
+understand what \emph{proper} collaboration is and how to go about engaging
+in it.  Collaborating with someone means that you are each putting in an 
+\emph{equal effort} and working on every piece of the code together.  
+A proper collaboration cannot have a partner who dominates and does all 
+the work themselves, undermining the learning experience of the other.
+Nor can it be a situation in which one person sits back and \emph{allows}
+the other person to do all the work, undermining their own learning 
+experience.  The responsibility for ensuring an equal partnership falls
+to \emph{each} member.
+
+Collaboration also implies a comparable partnership in terms of skills, 
+experience and understanding.  Someone who has had lots of programming 
+experience or understands the material naturally should probably not 
+``collaborate'' with someone who feels they are struggling with the
+topics (and vice versa).  This is an unequal partnership.  It is 
+perfectly fine for a more experienced student to \emph{mentor} and 
+guide others but in general you should team up with students whom 
+you have a more comparable skill/experience level.
+
+Without proper collaboration you end up undermining your own 
+learning experience.  It may help you get the labs and hacks done, 
+but ultimately you won't learn the material.  When it comes to
+the assignments and exams when you have to ``stand on your own''
+you will be very ill prepared.  
+
+\section*{By Example: The How \& The Why}
+
+Some students still have a hard time discerning what is and what
+is not acceptable.  Consider the following approaches to *how*
+students may potentially cheat.
+
+\begin{itemize}
+  \item If you do a google search for ``how do I process a comma 
+  delimited data string in Java'' that is likely fine.  However, 
+  we went over this in class, in lab, etc.  This should be a red 
+  flag that you are not utilizing the legitimate resources that 
+  we have already provided.  Are you "attending" lecture?  Are 
+  you taking notes?  Are you watching the required videos and/or 
+  reading the handouts?  These should be your first resources, 
+  not google, not stackoverflow, etc.
+  \item However, if you (say) cut and paste part of the assignment 
+  handout into google, you are implicitly hoping that someone has 
+  posted code, full or partial for the assignment and you intend 
+  to use it either wholly or in part (or intend to attempt to 
+  obfuscate it by using different variable names, something that 
+  MOSS can easily see past).  Don't do this.  This is crossing the line
+  \item If you take the assignment, snap photos of it with your 
+  phone and post it to a scum website like chegg asking for a 
+  solution (or any variation of this such as hiring someone to do 
+  it for you entirely), this is not just crossing the line, its 
+  jumping over it and doing a straight 10k down the road with a 
+  stupid grin on your face the whole time.  At this point you 
+  really shouldn't be asking yourself "is this okay" you should 
+  be asking yourself: why am I in this class?  Why am I in this 
+  major?  Why am I in college?  You may last long enough to pass 
+  or graduate and you may even be able to lie your way into that 
+  first job like the ``Brillant Paula Bean.''  But it ain't 
+  gonna last long.
+\end{itemize}
+
+Ask yourself *why* are you seeking out the resource(s) that you 
+are seeking?  Is it because:
+
+\begin{itemize}
+  \item You're working at the last minute and there are no LAs 
+  to ask and no one is on Piazza because we're all asleep?  
+  
+  Start earlier.
+  
+  \item Is it because you've not utilized the resources we've 
+  provided (you skipped lecture, didn't do the required reading, 
+  didn't read the handout fully, etc.)?  
+  
+  Utilize them.  These are your primary resources.
+  
+  \item Is it because you have utilized our primary resources 
+  but still have a genuine misunderstanding?  Post to piazza, 
+  attend office hours, etc. 
+  
+  \item If you think our primary resource suck and find resources 
+  (legitimate) that are better, send them to me and I'll share 
+  them with the class!
+\end{itemize}
+
+\newpage
+\section*{Academic Integrity Testimonials}
+
+In past semesters when students have been caught cheating or copying code in
+a manner that was not allowed by the academic integrity policy, they were asked
+to write a testimonial of what they did, why they did it and to give advice
+to future students on why they should not make the same mistakes.  These
+are their stories.
+
+\begin{quote}
+``Computer Science is a course that requires a lot of extra time, it is comparable to learning a new language. As with every course taken from any school, you will get out exactly what you put into it. Cheating or copying code is not the way to learn any new material, not only is an easy escape to class assignment, but will also leave you helpless when it comes to exams and labs, and eventually in the real world. Cheating also shatters any integrity you had, as a syllabus and course contract was signed saying not to cheat, and to be honest with all of the work submitted. As tempting as it is to just copy and paste, even on this one assignment, I highly encourage the reader not to. There are so many alternatives offered by the instructor and college, there is not a good reason to cheat. There are online discussion boards available, extensive office hours from the teachers assistants, graduate teaching assistants, and instructors. A lot of these people are more than willing to help with any questions you may have, and make it very easy to come in and get the help you need. Another great resource is to look back at course slides, notes, and lab work. A lot of this work was demonstrated either in lecture notes, or done in lab with help from fellow classmates and teaching assistants. The instructors and teaching assistants also make it easy to revisit this material.  With all of these options, you are not completely left to your own devices, and there are a fair amount of people who want to help, and there are plenty of resources to look to instead of copying from the internet, or copying off of friends or classmates. In conclusion, I highly suggest putting the time and effort into learning how to use the resources made readily accessible, and not relying on the internet to get assignments done.'' 
+\end{quote}
+
+\begin{quote}
+``Nothing is worth risking your future and your reputation. You are a good student and a hard worker, but you need to make time and plan ahead for your classes and assignments. Yeah you are overwhelmed with your schedule this year, but there is no excuse for cheating or getting behind. You have plenty of time to re-read lecture notes and practice labs. You need to split focus up equally between classes. It is so pointless to cheat just to get by in a class, because you know deep down you are going to constantly think about the fact you didn't do it on your own, you didn't do it the right way. It will constantly eat at you knowing that you cheated to get the grade you have, when you know if you worked hard enough, you could do even better. And again, if you got caught? You're screwed. You could fail the course or assignment, or even worse. No stupidity or cheating is worth that price of letting your friends and family down. You strive to make your parents proud every day, and this cheating could destroy them and what they think of you. Nothing is worth that. Especially after they have given you all the tools to be successful, do not throw that away. You may be panicking now, but that is because you have not organized your schedule to make time for studying and preparing for every class. This class may get hard at times, but just remember that feeling of gratitude when you finally understand the programming and you start to enjoy coding because you actually know how to use and manipulate code. There was no reason to get behind or late on this assignment, and there was definitely no reason to cheat. You can understand and get an amazing grade by studying and working hard for your grade so you can feel accomplished and deserving of that grade at the end of the semester. You are so much better than this and you can work so much harder and apply that to real life and every other class you are in. Let this message guide you to the right path in being successful and never let cheating be a thought in your mind ever again. Work your hardest and prove to everyone how great you can be with hard work and dedication.''
+\end{quote}
+
+\begin{quote}
+``In order to help future students with mistakes that may affect their path I have two messages. First, be careful with handing out your code to people. While you may do so with good intentions hoping to help somebody, it may come back around to hurt you. Second, make sure to start all of your homework early. If you are diligent with your work, then you will not be going to the resource center the day homework is due and you will not be seeking other students for help, which might lead to a bad decision.''
+\end{quote}
+
+\begin{quote}
+``On one of our assignments, I asked a student to share one of his programs with me
+because I waited until three days before it was due to start on it. Put simply, I panicked and saw cheating as the only way I could finish the assignment in time. I learned the hard way that when the instructor says they'll catch any cheaters, they most definitely will catch them. In hindsight there were many other options I had, such as starting the assignment while we were covering the material in lecture as opposed to doing it two weeks later. I've never been the type of person to cheat on assignments or tests since I think it's counterproductive and devalues the effort of people who actually did the work. It's wrong for me to get credit for something I put no work into. If I could do it over, I would've just done whatever I could with the time I had and turned it in, even if it wasn't finished.''
+\end{quote}
+
+\begin{quote}
+``I am writing this paper because I had a program that matched very closely with several other students. The intent was not to cheat, but to instead help someone out. This guy needed some help on a program that I had already completed, and he had helped me out with a problem I was having on another part of the assignment, so I figured why not help him. So, I ended up just sending him my code and he pretty much copied the whole thing word for word.  Not only did he copy it, but he then sent it to more people and they all copied it pretty much word for word. 
+	I would highly recommend not to cheat because in the end it's not worth it at all. Eventually, with all the technology that the university has, you will be caught and maybe the professor will be in a bad mood that day and will just kick you out of the class. Then your parents are mad because they just threw money down the drain for that class and now there are even more consequences. So, just struggle through the assignment and actually learn something that you may be able to apply in the future.''
+\end{quote}
+
+\begin{quote}
+If the thought goes through your mind that this could possible qualify as 
+cheating, it more than likely is. Even if it doesn't cross your mind that 
+what you're doing could be cheating, it still might be. There was one 
+particular assignment that a lot of people were struggling on, so I started 
+talking to someone else we knew in the class and just asking things like, 
+"Hey, how did you get this to work?" And "Is this how this is supposed to 
+be?" Then one thing led to another and I ended up sending another individual 
+my code so they could physically look at it and see what was working for us. 
+Looking back this was definitely a red flag, but I didn't really think of 
+it as that at the time. It is easy and convenient to go to your fellow 
+classmates and discuss an assignment and get some help, but what I did 
+was a step too far. The University does not take lightly to cheating and 
+has a near zero tolerance policy, so just don't do it. Whenever you cheat 
+you risk expulsion, and that is not something you want to toy around with.
+My advice to you would be to take advantage of the resource center and of 
+office hours. I can almost guarantee that they can help you more than anyone 
+in the class can. Also, be proactive with going into office hours. If you 
+wait until the Friday that the assignment is due you'll spend most of your 
+time waiting for a TA to get done helping all the other people that put it 
+off before you can get helped.
+\end{quote}
+
+\begin{quote}
+While Completing an assignment for our Computer Science I class, I turned 
+in a program which was almost entirely plagiarized from the internet.  
+The most basic reason why this happened was that we did not start the 
+assignment in time.  I procrastinated to the point where I started the 
+assignment on the day which it was due.  
+
+Plagiarism when it comes to any academic work is not acceptable and 
+will be caught.  UNL and every other university takes 
+cheating very seriously.  If any person is able to get away with 
+cheating, it is not only unfair to the other students in the course, 
+but can bring into question the integrity of the program itself.  
+You are responsible for upholding the integrity of the University 
+and of the College, and if you fail to do so, they will take action 
+to ensure that the course remains fair for all students involved and 
+that the program remains credible.  Cheating is morally wrong, 
+academically dishonest, and hurts not only you, but your classmates, 
+the college, and the University.
+
+Even If you are completely lost on an assignment, the professor and TAs 
+can and will help you get to a point where you can write a proper 
+program, but you need to use your time wisely in order to realize 
+that you do not understand something, got to a TA to learn what 
+the issue is, and implement a proper fix.  If you put in the proper 
+time, you can get an A on every homework assignment.  If you did 
+procrastinate, do what you can properly, and accept that your grade 
+may not be what you would like.  At that point it is usually too late 
+to reach out for help.  Copying code from the internet or from a friend 
+will be caught every time, and you will not only receive a worse grade 
+than you would have if you had only turned in what you personally could 
+write, but you will also face whatever additional punishment the 
+professor, college, and university deem necessary.  There is absolutely 
+no upside to cheating, and you will not get away with it.  Again, 
+if you are in a position where you are not going to be able to complete 
+an assignment, accept that you made a mistake, and fix your habits for 
+the next assignment.  One bad grade on an assignment will not automatically 
+destroy your grade, but, by cheating, you open yourself up to receiving 
+absolutely no credit for the assignment, or immediately failing the 
+class. Please learn from my mistake and avoid any situation which may 
+lead to cheating.
+\end{quote}
+	
+\begin{quote}
+To all current CS students or future CS students, always get ahead on 
+an assignment and use approved resources to the fullest.  Compared to 
+high school, college classes are a lot harder and require a lot more 
+work, especially computer science and programming classes.  If you're 
+struggling with an assignment and find something online that will work, 
+it's not worth it to copy and cheat.  From my experiences, I know that 
+it is not worth the risk and consequences to cheat and copy.  It's also 
+morally and ethically wrong.  If you get caught cheating, you risk 
+getting a 0 on the assignment or an F in the class which compares 
+nothing to just trying to figure it out yourself and getting a ``bad'' 
+grade on the assignment if you can't end up figuring it out. 
+\end{quote}
+
+\begin{quote}
+While writing a program, I did my best not to copy a GitHub post directly, 
+changing variable names and only taking some of the main elements of the 
+program. At the time, it didn't fully register in my mind that I was 
+plagiarizing something because I was more focused on having something 
+to turn in rather than the quality of what I was turning in. It took 
+some time to get the program to compile without any errors and run, 
+however it didn't work as it should have. I spent another few hours 
+trying to get it to function properly, but couldn't figure it out, 
+all the while looking back to the GitHub post more and more to reference 
+how it was implemented there, and how I could adapt what I took to work 
+in this situation. Ultimately, I never got the program to work
+
+I learned my lesson. I procrastinated too long before starting the assignment and was so caught up in finishing it on time that I resorted to doing something immoral, and I didn't end up with any working programs anyways. Cheating is never worth it.
+\end{quote}
+
+
+\end{document}
